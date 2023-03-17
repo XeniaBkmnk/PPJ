@@ -1,0 +1,59 @@
+public
+    class Сompass {
+    public static void main(String[] args) {
+        
+        // Kompas to przyrząd nawigacyjny służący do wyznaczania kierunku południka magnetycznego.
+        // Przyjmij że zmienna typu liczbowego całkowitego zostanie zainicjowana
+        // wartością 0 reprezentującą północ. Napisz program pozwalający na obracanie się
+        // w lewo lub prawo, przez wciśnięcie odpowiednio klawisza A i D.
+        // Zadbaj aby przy każdej zmianie orientacji na konsoli wypisywał się komunikat np:
+            /*  ->A
+             West
+               ->A
+               South
+                ->A
+               East
+                ->A
+                North
+                 ->D
+                West
+           Zakończenie programu następuje po wciśnięciu klawisza Q.
+           Postaraj się zamienić wymienione kierunki na strzałki z tablicy znaków unicode.
+       */
+
+        java.util.Scanner scanner = new java.util.Scanner(System.in);
+        char direction = scanner.next().charAt(0);  //direction - отклонения
+        int initialPoint = 0; // initialPoint- в начальной точке
+
+        while (direction != 'Q') {
+            boolean isCorrectInput = true; //isCorrectInput- является правельным вводом
+            if (direction == 'A') {  //direction - отклонения
+                if (initialPoint == 0) {
+                    initialPoint = 3;
+                } else {
+                    initialPoint -= 1;
+                }
+            } else if (direction == 'D') {
+                if (initialPoint == 3) {
+                    initialPoint = 0;
+                } else {
+                    initialPoint += 1;
+                }
+            } else {
+                isCorrectInput = false;
+            }
+
+            if (isCorrectInput) {
+                switch (initialPoint) {
+                    case 0 -> System.out.println("North"); //север
+                    case 1 -> System.out.println("East");  //восток
+                    case 2 -> System.out.println("South"); //юг
+                    case 3 -> System.out.println("West");  //запад
+                }
+            }
+
+            direction = scanner.next().charAt(0);
+        }
+
+    }
+  }
